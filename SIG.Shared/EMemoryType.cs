@@ -1,4 +1,4 @@
-﻿namespace SIG.Core.Domain
+﻿namespace SIG.Shared.Enums
 {
     public enum EMemoryType
     {

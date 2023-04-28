@@ -1,13 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using SIG.Core.Domain;
 
 namespace SIG.Data
 {
     public class SigDBContext:DbContext
     {
-        public string conn = "";// ConfigurationManager.ConnectionStrings["SqlConn2"].ConnectionString;
+        private readonly string strConn = @"Server=(localdb)\\mssqllocaldb;Database=aspnet-SIG.UI-e578ea46-d54d-49d0-be1e-51e4bd7ccd36;Trusted_Connection=True;MultipleActiveResultSets=true";
 
-        public SigDBContext(DbContextOptions<SigDBContext> contextOptions):base(contextOptions)
+        public SigDBContext(DbContextOptions contextOptions):base(contextOptions)
+        {
+            
+        }
+        public SigDBContext()
         {
             
         }
@@ -39,11 +44,12 @@ namespace SIG.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(conn);
+                optionsBuilder.UseSqlServer(strConn);
                 optionsBuilder.EnableSensitiveDataLogging(true);
             }
             base.OnConfiguring(optionsBuilder);
         }
+
         public DbSet<Computer> Computers { get; set; }
     }
 }

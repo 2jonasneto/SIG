@@ -10,13 +10,14 @@ namespace SIG.Core.Base
     public interface IRepository<TEntity>:IDisposable where TEntity : Entity
     {
         Task<IEnumerable<TEntity>> GetAll();
-        Task<IQueryable<TEntity>> GetByQueryReturnIQueryable(Expression<Func<TEntity,bool>> expression);
         Task<IEnumerable<TEntity>> GetByQueryReturnIEnumerable(Expression<Func<TEntity, bool>> expression);
         Task<TEntity> GetById(Guid id);
 
         Task Add(TEntity entity);
         Task Remove(Guid id);
         Task Update(TEntity entity);
+
+        Task<int> SaveChanges();
         
 
     }

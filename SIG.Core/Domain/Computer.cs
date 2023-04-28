@@ -1,4 +1,5 @@
 ﻿using SIG.Core.Base;
+using SIG.Shared.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace SIG.Core.Domain
 {
-    public sealed class Computer : Entity
+    public  sealed class Computer : Entity
     {
+        public Computer()
+        {
+            
+        }
         public Computer(string name, string description, string processor,
             EMemoryType memoryType, EDiskType diskType, int diskSize,
             int memorySize, Guid brandId, string brandName, Guid typeId,

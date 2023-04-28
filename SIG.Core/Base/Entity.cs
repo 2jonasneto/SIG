@@ -8,7 +8,7 @@ namespace SIG.Core.Base
 {
     public abstract class Entity
     {
-        protected Entity( string modifiedBy)
+        protected Entity( string modifiedBy="")
         {
             Id = Guid.NewGuid(); 
             ModifiedBy = modifiedBy;
