@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +13,9 @@ namespace SIG.Services
         public Guid Id { get; set; }
         public string ModifiedBy { get; set; } = string.Empty;
         public DateTime ModifyDate { get; set; }
-        public bool IsActive { get; set; } 
-
+        public bool IsActive { get; set; }
+        [Display(Name ="Nome")]
+        [Required(ErrorMessage ="Nome do computador é obrigatório!")]
         public string Name { get;  set; } = string.Empty;
         public string Description { get;  set; } = string.Empty;
         public string Processor { get;  set; } = string.Empty;

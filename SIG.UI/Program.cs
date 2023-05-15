@@ -8,6 +8,8 @@ namespace SIG.UI
 {
     public class Program
     {
+     
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -26,7 +28,7 @@ namespace SIG.UI
 
             builder.Services.AddScoped<DbContext, SigDBContext>();
             builder.Services.AddScoped<IComputerRepository, ComputerRepository>();
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddMvc();
           
             var app = builder.Build();
 
@@ -41,7 +43,7 @@ namespace SIG.UI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+           app.UseMigrationsEndPoint();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

@@ -11,9 +11,11 @@ using SIG.Core.Domain;
 using SIG.Core.Domain.Interfaces;
 using SIG.Data;
 using SIG.Services;
+using SIG.UI.Base;
 
 namespace SIG.UI.Controllers
 {
+  //  [Route("Home/"+Program.guid)]
     public class ComputersController : Controller
     {
         private readonly IComputerRepository _computerRepository;
@@ -32,6 +34,8 @@ namespace SIG.UI.Controllers
         }
 
         // GET: Computers/Details/5
+        [Route(GuidRoutes.Details)]
+
         public async Task<IActionResult> Details(Guid id)
         {
             var computerViewModel = await GetComputer(id);
@@ -41,6 +45,7 @@ namespace SIG.UI.Controllers
         }
 
         // GET: Computers/Create
+        [Route(GuidRoutes.Create)]
         public IActionResult Create()
         {
             return View();
@@ -61,6 +66,7 @@ namespace SIG.UI.Controllers
         }
 
         // GET: Computers/Edit/5
+        [Route(GuidRoutes.Edit)]
         public async Task<IActionResult> Edit(Guid id)
         {
             var computerViewModel = await GetComputer(id);
@@ -89,6 +95,8 @@ namespace SIG.UI.Controllers
         }
 
         // GET: Computers/Delete/5
+        [Route(GuidRoutes.Delete)]
+
         public async Task<IActionResult> Delete(Guid id)
         {
             var computerViewModel = await GetComputer(id);

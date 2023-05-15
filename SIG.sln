@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIG.Services", "SIG.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIG.Shared", "SIG.Shared\SIG.Shared.csproj", "{41352182-E880-4E00-AC42-DC3F9683B5BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIG.UI", "SIG.UI\SIG.UI.csproj", "{FE35EFF9-8AB5-40D1-84FD-30B9189757B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIG.UI", "SIG.UI\SIG.UI.csproj", "{FE35EFF9-8AB5-40D1-84FD-30B9189757B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

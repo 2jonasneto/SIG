@@ -22,4 +22,8 @@
     <ProjectReference Include="..\SIG.Services\SIG.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Cadastros\" />
+  </ItemGroup>
+
 </Project>
