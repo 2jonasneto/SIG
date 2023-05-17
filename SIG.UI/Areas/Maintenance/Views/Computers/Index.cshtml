@@ -1,12 +1,13 @@
-﻿@model IEnumerable<SIG.Services.ComputerViewModel>
+﻿@model IEnumerable<SIG.Core.Domain.Computer>
 
 @{
     ViewData["Title"] = "Index";
 }
+
 <h1>Index</h1>
 
 <p>
-    <a asp-area="Cadastros" asp-action="/computers/Create">Create New</a>
+    <a asp-area="Maintenance" asp-controller="Computers" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SIG.Core.Domain.Interfaces;
 using SIG.Data.Base;
 using SIG.Data.Respositories;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace SIG.UI
 {
@@ -26,7 +27,6 @@ namespace SIG.UI
                 .AddEntityFrameworkStores<SigDBContext>();
             builder.Services.AddAutoMapper(typeof(Program));
 
-            builder.Services.AddScoped<DbContext, SigDBContext>();
             builder.Services.AddScoped<IComputerRepository, ComputerRepository>();
             builder.Services.AddMvc();
           
@@ -50,9 +50,10 @@ namespace SIG.UI
             app.UseRouting();
 
             app.UseAuthorization();
-            app.MapControllerRoute(
-               name: "Cadastros",
-               pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapAreaControllerRoute(
+               name: "areas",
+               areaName:"Maintenance",
+               pattern: "Maintenance/{controller=Home}/{action=Index}/{id?}");
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
