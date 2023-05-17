@@ -13,9 +13,10 @@ using SIG.Data;
 using SIG.Services;
 using SIG.UI.Base;
 
-namespace SIG.UI.Controllers
+namespace SIG.UI.Areas.Cadastros.Controllers
 {
-  //  [Route("Home/"+Program.guid)]
+    //  [Route("Home/"+Program.guid)]
+    [Area("Cadastros")]
     public class ComputersController : Controller
     {
         private readonly IComputerRepository _computerRepository;
@@ -27,10 +28,11 @@ namespace SIG.UI.Controllers
         }
 
         // GET: Computers
+        [Route("computers")]
         public async Task<IActionResult> Index()
         {
-            return View(_mapper.Map<IEnumerable<ComputerViewModel>>(await _computerRepository.GetAll()));
-                         
+            // return View(_mapper.Map<IEnumerable<ComputerViewModel>>(await _computerRepository.GetAll()));
+            return View(new List<ComputerViewModel>());
         }
 
         // GET: Computers/Details/5
@@ -40,11 +42,12 @@ namespace SIG.UI.Controllers
         {
             var computerViewModel = await GetComputer(id);
             if (computerViewModel == null) return NotFound();
-            
+
             return View(computerViewModel);
         }
 
         // GET: Computers/Create
+        [Route("~/computers/create")]
         [Route(GuidRoutes.Create)]
         public IActionResult Create()
         {
@@ -56,11 +59,12 @@ namespace SIG.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Create(ComputerViewModel computerViewModel)
         {
             if (!ModelState.IsValid) return View(computerViewModel);
-            
-                var computer=_mapper.Map<Computer>(computerViewModel);
+
+            var computer = _mapper.Map<Computer>(computerViewModel);
             await _computerRepository.Add(computer);
             return RedirectToAction("Index");
         }
@@ -74,7 +78,7 @@ namespace SIG.UI.Controllers
 
             return View(computerViewModel);
 
-          
+
         }
 
         // POST: Computers/Edit/5
@@ -118,7 +122,7 @@ namespace SIG.UI.Controllers
             return RedirectToAction("index");
         }
 
-   
+
         private async Task<ComputerViewModel> GetComputer(Guid id)
         {
             return _mapper.Map<ComputerViewModel>(await _computerRepository.GetById(id));

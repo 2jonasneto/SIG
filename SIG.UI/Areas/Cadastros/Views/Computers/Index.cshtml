@@ -3,11 +3,10 @@
 @{
     ViewData["Title"] = "Index";
 }
-@await Html.PartialAsync("_TestePartial")
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-area="Cadastros" asp-action="/computers/Create">Create New</a>
 </p>
 <table class="table">
     <thead>

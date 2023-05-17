@@ -2,20 +2,16 @@
 using Microsoft.Extensions.Configuration;
 using SIG.Core.Domain;
 
-namespace SIG.Data
+namespace SIG.Data.Base
 {
-    public class SigDBContext:DbContext
+    public class SigDBContext : DbContext
     {
-        private readonly string strConn = @"Server=(localdb)\\mssqllocaldb;Database=aspnet-SIG.UI-e578ea46-d54d-49d0-be1e-51e4bd7ccd36;Trusted_Connection=True;MultipleActiveResultSets=true";
 
-        public SigDBContext(DbContextOptions contextOptions):base(contextOptions)
+        public SigDBContext(DbContextOptions<SigDBContext> contextOptions) : base(contextOptions)
         {
-            
+
         }
-        public SigDBContext()
-        {
-            
-        }
+  
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
@@ -30,7 +26,7 @@ namespace SIG.Data
                 .SelectMany(e => e.GetProperties()
                 .Where(p => p.ClrType == typeof(decimal))))
             {
-                property.SetColumnType("Decimal(15,2)");
+                property.SetColumnType("Decimal(10,2)");
             }
 
             foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
@@ -40,15 +36,7 @@ namespace SIG.Data
             builder.ApplyConfigurationsFromAssembly(typeof(SigDBContext).Assembly);
             base.OnModelCreating(builder);
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(strConn);
-                optionsBuilder.EnableSensitiveDataLogging(true);
-            }
-            base.OnConfiguring(optionsBuilder);
-        }
+     
 
         public DbSet<Computer> Computers { get; set; }
     }

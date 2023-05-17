@@ -9,5 +9,6 @@ namespace SIG.Core.Domain.Interfaces
 {
     public interface IComputerRepository:IRepository<Computer>
     {
+
     }
 }

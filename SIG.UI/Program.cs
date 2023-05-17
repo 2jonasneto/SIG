@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SIG.Core.Domain.Interfaces;
-using SIG.Data;
+using SIG.Data.Base;
 using SIG.Data.Respositories;
 
 namespace SIG.UI
@@ -15,11 +15,11 @@ namespace SIG.UI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = builder.Configuration.GetConnectionString("Conn2") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<SigDBContext>(options =>
                 options.UseSqlServer(connectionString));
             // builder.Services.AddDbContext<SigDBContext>();
-
+         
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -50,11 +50,22 @@ namespace SIG.UI
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.MapControllerRoute(
+               name: "Cadastros",
+               pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+           
             app.MapRazorPages();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                var context = services.GetRequiredService<SigDBContext>();
+                context.Database.Migrate();
+            }
 
             app.Run();
         }

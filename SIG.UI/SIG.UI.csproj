@@ -8,6 +8,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Cadastros\**" />
+    <Content Remove="Areas\Cadastros\**" />
+    <EmbeddedResource Remove="Areas\Cadastros\**" />
+    <None Remove="Areas\Cadastros\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Areas\Cadastros\Controllers\ComputersController.cs" />
+    <Compile Include="Areas\Cadastros\Views\Computers\_TestePartial.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\Cadastros\Views\Computers\Create.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Computers\Delete.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Computers\Details.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Computers\Edit.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Computers\Index.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Computers\_TestePartial.cshtml" />
+    <Content Include="Areas\Cadastros\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="automapper.extensions.microsoft.dependencyinjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
@@ -23,7 +45,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Cadastros\" />
+    <Folder Include="Areas\Cadastros\Data\" />
+    <Folder Include="Areas\Cadastros\Models\" />
   </ItemGroup>
 
 </Project>

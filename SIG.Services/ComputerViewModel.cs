@@ -14,6 +14,7 @@ namespace SIG.Services
         public string ModifiedBy { get; set; } = string.Empty;
         public DateTime ModifyDate { get; set; }
         public bool IsActive { get; set; }
+
         [Display(Name ="Nome")]
         [Required(ErrorMessage ="Nome do computador é obrigatório!")]
         public string Name { get;  set; } = string.Empty;

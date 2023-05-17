@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SIG.Data.Base
 {
-    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity,new()
+    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
         protected readonly SigDBContext Db;
         protected readonly DbSet<TEntity> DbSet;
@@ -42,7 +42,10 @@ namespace SIG.Data.Base
 
         public async Task Remove(Guid id)
         {
-           DbSet.Remove(new TEntity { Id=id});
+            var entity = DbSet.Find(id);
+
+            if (entity == null) return;
+            else DbSet.Remove(entity);
             await SaveChanges();
         }
 
