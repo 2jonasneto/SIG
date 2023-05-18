@@ -4,16 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SIG.Core.Services;
 using SIG.Shared.Enums;
 
 namespace SIG.Services
 {
-    public class ComputerViewModel
+    public class ComputerViewModel:Model
     {
-        public Guid Id { get; set; }
-        public string ModifiedBy { get; set; } = string.Empty;
-        public DateTime ModifyDate { get; set; }
-        public bool IsActive { get; set; }
+       
 
         [Display(Name ="Nome")]
         [Required(ErrorMessage ="Nome do computador é obrigatório!")]

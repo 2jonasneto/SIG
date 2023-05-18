@@ -13,8 +13,8 @@ namespace SIG.Core.Domain
       
         public Computer(string name, string description, string processor,
             EMemoryType memoryType, EDiskType diskType, int diskSize,
-            int memorySize, Guid brandId, string brandName, Guid typeId,
-            string typeName, string serialNumber, Guid locacityId,
+            int memorySize, Guid brandId,  Guid typeId,
+           string serialNumber, Guid locacityId,
              Guid areaId, Guid sectorId, string modifiedBy) : base(modifiedBy)
         {
             Name = name;
@@ -33,8 +33,8 @@ namespace SIG.Core.Domain
         }
         public void Update(string name, string description, string processor,
            EMemoryType memoryType, EDiskType diskType, int diskSize,
-           int memorySize, Guid brandId, string brandName, Guid typeId,
-           string typeName, string serialNumber, Guid locacityId,
+           int memorySize, Guid brandId,  Guid typeId,
+           string serialNumber, Guid locacityId,
             Guid areaId,Guid sectorId, bool isActive, string modifiedBy,
            DateTime modifyDate)
         {
