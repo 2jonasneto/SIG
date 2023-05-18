@@ -1,4 +1,5 @@
-﻿@model SIG.Services.ComputerViewModel
+﻿@using SIG.Shared.Enums;
+@model SIG.Services.ComputerViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -30,12 +31,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="MemoryType" class="control-label"></label>
-                <select asp-for="MemoryType" class="form-control"></select>
+                <select asp-for="MemoryType" class="form-control" asp-items="Html.GetEnumSelectList<EMemoryType>()">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+               
                 <span asp-validation-for="MemoryType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DiskType" class="control-label"></label>
-                <select asp-for="DiskType" class="form-control"></select>
+                <select asp-for="DiskType" class="form-control" asp-items="Html.GetEnumSelectList<EDiskType>()">
+                    <option selected="selected" value="">Please select</option>
+                </select>
                 <span asp-validation-for="DiskType" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -78,31 +84,19 @@
                 <input asp-for="LocacityId" class="form-control" />
                 <span asp-validation-for="LocacityId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="LocacityName" class="control-label"></label>
-                <input asp-for="LocacityName" class="form-control" />
-                <span asp-validation-for="LocacityName" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="AreaId" class="control-label"></label>
                 <input asp-for="AreaId" class="form-control" />
                 <span asp-validation-for="AreaId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AreaName" class="control-label"></label>
-                <input asp-for="AreaName" class="form-control" />
-                <span asp-validation-for="AreaName" class="text-danger"></span>
-            </div>
+       
             <div class="form-group">
                 <label asp-for="SectorId" class="control-label"></label>
                 <input asp-for="SectorId" class="form-control" />
                 <span asp-validation-for="SectorId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="SectorName" class="control-label"></label>
-                <input asp-for="SectorName" class="form-control" />
-                <span asp-validation-for="SectorName" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="ModifiedBy" class="control-label"></label>
                 <input asp-for="ModifiedBy" class="form-control" />

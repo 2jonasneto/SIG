@@ -61,7 +61,7 @@ namespace SIG.UI.Areas.Maintenance
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Processor,MemoryType,DiskType,DiskSize,MemorySize,BrandId,BrandName,TypeId,TypeName,SerialNumber,LocacityId,LocacityName,AreaId,AreaName,SectorId,SectorName,Id,ModifiedBy,ModifyDate,IsActive")] Computer computer)
+        public async Task<IActionResult> Create([Bind("Name,Description,Processor,MemoryType,DiskType,DiskSize,MemorySize,BrandId,BrandName,TypeId,TypeName,SerialNumber,LocacityId,AreaId,SectorId,Id,ModifiedBy,ModifyDate,IsActive")] Computer computer)
         {
             if (ModelState.IsValid)
             {

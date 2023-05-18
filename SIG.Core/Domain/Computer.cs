@@ -15,8 +15,7 @@ namespace SIG.Core.Domain
             EMemoryType memoryType, EDiskType diskType, int diskSize,
             int memorySize, Guid brandId, string brandName, Guid typeId,
             string typeName, string serialNumber, Guid locacityId,
-            string locacityName, Guid areaId, string areaName,
-            Guid sectorId, string sectorName, string modifiedBy) : base(modifiedBy)
+             Guid areaId, Guid sectorId, string modifiedBy) : base(modifiedBy)
         {
             Name = name;
             Description = description;
@@ -31,18 +30,14 @@ namespace SIG.Core.Domain
             TypeName = typeName;
             SerialNumber = serialNumber;
             LocacityId = locacityId;
-            LocacityName = locacityName;
             AreaId = areaId;
-            AreaName = areaName;
             SectorId = sectorId;
-            SectorName = sectorName;
         }
         public void Update(string name, string description, string processor,
            EMemoryType memoryType, EDiskType diskType, int diskSize,
            int memorySize, Guid brandId, string brandName, Guid typeId,
            string typeName, string serialNumber, Guid locacityId,
-           string locacityName, Guid areaId, string areaName,
-           Guid sectorId, string sectorName, bool isActive, string modifiedBy,
+            Guid areaId,Guid sectorId, bool isActive, string modifiedBy,
            DateTime modifyDate)
         {
             Name = name;
@@ -58,11 +53,8 @@ namespace SIG.Core.Domain
             TypeName = typeName;
             SerialNumber = serialNumber;
             LocacityId = locacityId;
-            LocacityName = locacityName;
             AreaId = areaId;
-            AreaName = areaName;
             SectorId = sectorId;
-            SectorName = sectorName;
             ModifiedBy = modifiedBy;
             ModifyDate = modifyDate;
             IsActive = isActive;
@@ -71,6 +63,7 @@ namespace SIG.Core.Domain
         {
             IsActive = false;
         }
+
         public string Name { get; private set; } = string.Empty;
         public string Description { get; private set; } = string.Empty;
         public string Processor { get; private set; } = string.Empty;
@@ -84,11 +77,10 @@ namespace SIG.Core.Domain
         public string TypeName { get; private set; } = string.Empty;
         public string SerialNumber { get; private set; } = string.Empty;
         public Guid LocacityId { get; private set; }
-        public string LocacityName { get; private set; } = string.Empty;
         public Guid AreaId { get; private set; }
-        public string AreaName { get; private set; } = string.Empty;
         public Guid SectorId { get; private set; }
-        public string SectorName { get; private set; } = string.Empty;
 
+
+        public Locacity Locacity { get; set; }
     }
 }

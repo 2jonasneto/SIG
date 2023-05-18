@@ -30,10 +30,8 @@ namespace SIG.Services
         public string TypeName { get;  set; } = string.Empty;
         public string SerialNumber { get;  set; } = string.Empty;
         public Guid LocacityId { get;  set; }
-        public string LocacityName { get;  set; } = string.Empty;
         public Guid AreaId { get;  set; }
-        public string AreaName { get;  set; } = string.Empty;
         public Guid SectorId { get;  set; }
-        public string SectorName { get;  set; } = string.Empty;
+
     }
 }

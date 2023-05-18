@@ -39,5 +39,9 @@ namespace SIG.Data.Base
      
 
         public DbSet<Computer> Computers { get; set; }
+        public DbSet<ActingArea> ActingAreas { get; set; }
+        public DbSet<Sector> Sectors { get; set; }
+        public DbSet<Locacity> Locacities { get; set; }
+
     }
 }
