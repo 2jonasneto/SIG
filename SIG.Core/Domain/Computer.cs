@@ -25,9 +25,7 @@ namespace SIG.Core.Domain
             DiskSize = diskSize;
             MemorySize = memorySize;
             BrandId = brandId;
-            BrandName = brandName;
             TypeId = typeId;
-            TypeName = typeName;
             SerialNumber = serialNumber;
             LocacityId = locacityId;
             AreaId = areaId;
@@ -48,9 +46,7 @@ namespace SIG.Core.Domain
             DiskSize = diskSize;
             MemorySize = memorySize;
             BrandId = brandId;
-            BrandName = brandName;
             TypeId = typeId;
-            TypeName = typeName;
             SerialNumber = serialNumber;
             LocacityId = locacityId;
             AreaId = areaId;
@@ -71,16 +67,16 @@ namespace SIG.Core.Domain
         public EDiskType DiskType { get; private set; }
         public int DiskSize { get; private set; }
         public int MemorySize { get; private set; }
-        public Guid BrandId { get; private set; }
-        public string BrandName { get; private set; } = string.Empty;
-        public Guid TypeId { get; private set; }
-        public string TypeName { get; private set; } = string.Empty;
         public string SerialNumber { get; private set; } = string.Empty;
+
+
         public Guid LocacityId { get; private set; }
         public Guid AreaId { get; private set; }
         public Guid SectorId { get; private set; }
+        public Guid BrandId { get; private set; }
+        public Guid TypeId { get; private set; }
 
-
+      
         public Locacity Locacity { get; set; }
     }
 }
