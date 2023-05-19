@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SIG.Core.Services
+namespace SIG.Services
 {
-    public  class LocacityModel : Model
+    public  class LocacityViewModel : Model
     {
      
 
@@ -14,7 +14,7 @@ namespace SIG.Core.Services
 
 
         public Guid ActingAreaModelId { get;  set; }
-        public ActingAreaModel ActingArea { get;  set; }
+        public ActingAreaViewModel ActingArea { get;  set; }
 
     }
 }

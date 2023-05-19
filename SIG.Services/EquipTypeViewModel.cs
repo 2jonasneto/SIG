@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SIG.Core.Services
+namespace SIG.Services
 {
-    public  class EquipTypeModel:Model
+    public  class EquipTypeViewModel:Model
     {
         public string Name { get; private set; }
     }

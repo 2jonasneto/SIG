@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SIG.Core.Services
+namespace SIG.Services
 {
-    public  class SectorModel:Model
+    public  class ActingAreaViewModel:Model
     {
         public string Name { get; set; }
+     
     }
 }

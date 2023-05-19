@@ -28,6 +28,7 @@ namespace SIG.UI
             builder.Services.AddAutoMapper(typeof(Program));
 
             builder.Services.AddScoped<IComputerRepository, ComputerRepository>();
+            builder.Services.AddScoped<IBrandRepository, BrandRepository>();
             builder.Services.AddMvc();
           
             var app = builder.Build();

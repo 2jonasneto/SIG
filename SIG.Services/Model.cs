@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SIG.Core.Services
+namespace SIG.Services
 {
     public abstract class Model
     {
      
         public Guid Id { get;  set; }
-        public string ModifiedBy { get;  set; }
-        public DateTime ModifyDate { get;  set; }
-        public bool IsActive { get;  set; }
+        public string ModifiedBy { get; set; } = "";
+        public DateTime ModifyDate { get;  set; }= DateTime.Now;
+        public bool IsActive { get; set; } = true;
 
     }
 }

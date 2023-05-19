@@ -69,16 +69,14 @@ namespace SIG.UI.Areas.Maintenance
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Processor,MemoryType,DiskType,DiskSize,MemorySize,BrandId,BrandName,TypeId,TypeName,SerialNumber,LocacityId,AreaId,SectorId,Id,ModifiedBy,ModifyDate,IsActive")] Computer computer)
-        {return View(computer);
-            /*  if (ModelState.IsValid)
-              {
-                  computer.Id = Guid.NewGuid();
-                  _context.Add(computer);
-                  await _context.SaveChangesAsync();
-                  return RedirectToAction(nameof(Index));
-              }
-              return View(computer);*/
+        public async Task<IActionResult> Create(ComputerViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+            
+                await _computer.Add(_mapper.Map<Computer>(model));
+                return RedirectToAction(nameof(Index));
+            
+           
         }
 
         // GET: Maintenance/Computers/Edit/5
