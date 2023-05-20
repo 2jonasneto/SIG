@@ -9,7 +9,7 @@ namespace SIG.Core.Domain
 {
     public sealed class Brand:Entity
     {
-        public Brand(string name)
+        public Brand(string name,string modifiedBy):base(modifiedBy)
         {
             Name = name;
         }

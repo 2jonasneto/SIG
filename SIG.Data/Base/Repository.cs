@@ -25,7 +25,8 @@ namespace SIG.Data.Base
         
         public virtual async Task<TEntity> GetById(Guid id)
         {
-            return await DbSet.FindAsync(id);
+            var rs = await DbSet.FindAsync(id);
+            return  rs;
         }
 
         public virtual async Task<IEnumerable<TEntity>> GetByQueryReturnIEnumerable(Expression<Func<TEntity, bool>> expression)

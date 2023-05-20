@@ -26,7 +26,7 @@ namespace SIG.UI.Areas.Maintenance
             return View(brm);
         }
 
-        [HttpGet]
+       
         public async Task<IActionResult> Create()
         {
             
@@ -38,6 +38,34 @@ namespace SIG.UI.Areas.Maintenance
             if (!ModelState.IsValid) return View();
 
             await _brand.Add(_mapper.Map<Brand>(model));
+            return RedirectToAction(nameof(Index));
+        }
+
+       
+        public async Task<IActionResult> Edit(Guid id)
+        {
+
+            return View(_mapper.Map<BrandViewModel>(await _brand.GetById(id)));
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(BrandViewModel model)
+        {
+            if (!ModelState.IsValid) return View();
+
+            await _brand.Update(_mapper.Map<Brand>(model));
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Delete(Guid id)
+        {
+
+            return View(_mapper.Map<BrandViewModel>(await _brand.GetById(id)));
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(BrandViewModel model)
+        {
+            
+
+            await _brand.Remove(model.Id);
             return RedirectToAction(nameof(Index));
         }
     }
