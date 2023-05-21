@@ -1,17 +1,17 @@
-﻿@model SIG.Services.BrandViewModel
+﻿@model SIG.Services.ActingAreaViewModel
 
 @{
     ViewData["Title"] = "Create";
   
 }
 
-<h2>Adicionar novo fabricante</h2>
+<h2>Adicionar novo área</h2>
 <hr />
 
 <div class="row">
     <div class="col">
 
-        <form asp-area="Maintenance" asp-controller="Brands" asp-action="Create">
+        <form asp-area="Maintenance" asp-controller="ActingAreas" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>

@@ -4,34 +4,60 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SIG.UI</title>
+    
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SIG.UI.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
     <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color:whitesmoke">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SIG.UI</a>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  
+          navbar-dark bg-dark border-bottom box-shadow ">
+            <div class="container-fluid" >
+                <a  class="navbar-brand text-white-50" asp-area="" asp-controller="Home" asp-action="Index">SIG.UI</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <ul  class="navbar-nav flex-grow-1">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               Cadastros
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+                               
+                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="Brands" asp-action="Index">
+                                    <i class="fa-solid fa-industry"></i> Fabricantes
+                                </a>
+                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="EquipTypes" asp-action="Index">
+                                    <i class="fa-solid fa-industry-windows"></i>Tipos de Equipamento
+                                </a>
+                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="ActingAreas" asp-action="Index">
+                                    <i class="fa-solid fa-industry-windows"></i>Áreas</a>
+                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="Locacities" asp-action="Index">
+                                    <i class="fa-solid fa-industry-windows"></i> Unidades</a>
+                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="Sectors" asp-action="Index">
+                                    <i class="fa-solid fa-industry-windows"></i>Setores
+                                </a>
+                            </div>
                         </li>
+                       
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-white-50" asp-area="Maintenance" asp-controller="Computers" asp-action="Index">Computadores</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Maintenance" asp-controller="Computers" asp-action="Index">Computers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Maintenance" asp-controller="Brands" asp-action="Index">Brands</a>
+                       
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown link
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -46,9 +72,9 @@
 
 
   
-    <div class="container">
+    <div class="container-fluid" >
   
-        <main role="main" class="pb-3">
+        <main role="main" class="p-3">
             @RenderBody()
         </main>
     </div>
@@ -76,9 +102,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>

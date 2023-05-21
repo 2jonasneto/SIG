@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,8 +15,9 @@ namespace SIG.Services
         public string Name { get;  set; }
 
 
-        public Guid ActingAreaModelId { get;  set; }
-        public ActingAreaViewModel ActingArea { get;  set; }
+        public Guid ActingAreaId { get;  set; }
+        [NotMapped]
+        public virtual ActingAreaViewModel ActingArea { get; set; } =new ActingAreaViewModel();
 
     }
 }

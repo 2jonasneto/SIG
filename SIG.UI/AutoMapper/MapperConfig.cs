@@ -12,7 +12,11 @@ namespace SIG.UI.AutoMapper
             CreateMap<ActingArea,ActingAreaViewModel>().ReverseMap();
             CreateMap<Brand, BrandViewModel>().ReverseMap();
             CreateMap<EquipType, EquipTypeViewModel>().ReverseMap();
-            CreateMap<Locacity, LocacityViewModel>().ReverseMap();
+            CreateMap<Locacity, LocacityViewModel>().ForMember(
+                dest => dest.ActingArea,
+                opt => opt.MapFrom(src => src.ActingArea)
+                );
+            CreateMap<LocacityViewModel, Locacity>();
             CreateMap<Sector, SectorViewModel>().ReverseMap();
         }
     }

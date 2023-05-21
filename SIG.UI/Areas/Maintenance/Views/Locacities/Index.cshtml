@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SIG.Services.BrandViewModel>
+﻿@model IEnumerable<SIG.Services.LocacityViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,14 +6,14 @@
 
 }
 
-<h2>Cadastro de Fabricantes</h2>
+<h2>Cadastro de Unidades</h2>
 <hr />
 <table class="table">
     <tr>
-        <th> <a asp-area="Maintenance" asp-controller="Brands" asp-action="Create" class="btn btn-success"><i class="fa-solid fa-plus"></i>Adicionar</a></th>
+        <th> <a asp-area="Maintenance" asp-controller="Locacities" asp-action="Create" class="btn btn-success"><i class="fa-solid fa-plus"></i>Adicionar</a></th>
 
         <th class="justify-content-end d-flex">
-            <form class="d-flex" asp-controller="Brands" asp-action="Index">
+            <form class="d-flex" asp-controller="Locacities" asp-action="Index">
 
                 <input type="text" name="SearchString" class="form-control" style="max-width:400px;" />
 
@@ -31,6 +31,9 @@
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ActingArea.Name)
+            </th>
             <th style="width: 180px;text-align:right">
                 @Html.DisplayNameFor(model => model.ModifyDate)
             </th>
@@ -46,13 +49,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActingArea.Name)
+                </td>
                 <td align="right">
                     @Html.DisplayFor(modelItem => item.ModifyDate)
                 </td>
 
                 <td align="right">
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a onclick="showInPopup('/maintenance/brands/delete/@item.Id','Deseja excluir Fabricante (@item.Name)?')" class="btn btn-danger"><i class="fa-solid fa-trash-can text-dark"></i></a>
+                    <a onclick="showInPopup('/maintenance/locacities/delete/@item.Id','Deseja excluir Unidade (@item.Name)?')" class="btn btn-danger"><i class="fa-solid fa-trash-can text-dark"></i></a>
 
 
 

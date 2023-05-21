@@ -29,6 +29,10 @@ namespace SIG.UI
 
             builder.Services.AddScoped<IComputerRepository, ComputerRepository>();
             builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+            builder.Services.AddScoped<ILocacityRepository, LocacityRepository>();
+            builder.Services.AddScoped<IActingAreaRepository, ActingAreaRepository>();
+            builder.Services.AddScoped<ISectorRepository, SectorRepository>();
+            builder.Services.AddScoped<IEquipTypeRepository, EquipTypeRepository>();
             builder.Services.AddMvc();
           
             var app = builder.Build();

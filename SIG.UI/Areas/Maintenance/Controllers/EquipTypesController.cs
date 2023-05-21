@@ -8,38 +8,38 @@ using SIG.Services;
 namespace SIG.UI.Areas.Maintenance
 {
     [Area("Maintenance")]
-    public class BrandsController : Controller
+    public class EquipTypesController : Controller
     {
-        private readonly IBrandRepository _brand;
+        private readonly IEquipTypeRepository _equipType;
         private readonly IMapper _mapper;
 
-        public BrandsController(IMapper mapper, IBrandRepository brand)
+        public EquipTypesController(IMapper mapper, IEquipTypeRepository equipType)
         {
 
             _mapper = mapper;
-            _brand = brand;
+            _equipType = equipType;
         }
 
         /* public async Task<IActionResult> Index()
          {
-             var br = await _brand.GetAll();
-             var brm = _mapper.Map<IEnumerable<BrandViewModel>>(br);
+             var br = await _equipType.GetAll();
+             var brm = _mapper.Map<IEnumerable<EquipTypeViewModel>>(br);
 
              return View(brm);
          }*/
-        [Route("/Maintenance/brands")]
+        [Route("/Maintenance/equipTypes")]
         public async Task<IActionResult> Index(string searchString)
         {
             var str = searchString.IsNullOrEmpty() ? "" : searchString;
-            var br = await _brand.GetByQueryReturnIEnumerable(x=>x.Name.Contains(str));
-            var brm = _mapper.Map<IEnumerable<BrandViewModel>>(br);
+            var br = await _equipType.GetByQueryReturnIEnumerable(x=>x.Name.Contains(str));
+            var brm = _mapper.Map<IEnumerable<EquipTypeViewModel>>(br);
 
             return View(brm);
         }
         public async Task<IActionResult> Details(Guid id)
         {
 
-            return View(_mapper.Map<BrandViewModel>(await _brand.GetById(id)));
+            return View(_mapper.Map<EquipTypeViewModel>(await _equipType.GetById(id)));
         }
         public async Task<IActionResult> Create()
         {
@@ -47,11 +47,11 @@ namespace SIG.UI.Areas.Maintenance
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(BrandViewModel model)
+        public async Task<IActionResult> Create(EquipTypeViewModel model)
         {
             if (!ModelState.IsValid) return View();
 
-            await _brand.Add(_mapper.Map<Brand>(model));
+            await _equipType.Add(_mapper.Map<EquipType>(model));
             return RedirectToAction(nameof(Index));
         }
 
@@ -59,27 +59,27 @@ namespace SIG.UI.Areas.Maintenance
         public async Task<IActionResult> Edit(Guid id)
         {
 
-            return View(_mapper.Map<BrandViewModel>(await _brand.GetById(id)));
+            return View(_mapper.Map<EquipTypeViewModel>(await _equipType.GetById(id)));
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(BrandViewModel model)
+        public async Task<IActionResult> Edit(EquipTypeViewModel model)
         {
             if (!ModelState.IsValid) return View();
 
-            await _brand.Update(_mapper.Map<Brand>(model));
+            await _equipType.Update(_mapper.Map<EquipType>(model));
             return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Delete(Guid id)
         {
 
-            return View(_mapper.Map<BrandViewModel>(await _brand.GetById(id)));
+            return View(_mapper.Map<EquipTypeViewModel>(await _equipType.GetById(id)));
         }
         [HttpPost]
-        public async Task<IActionResult> Delete(BrandViewModel model)
+        public async Task<IActionResult> Delete(EquipTypeViewModel model)
         {
             
 
-            await _brand.Remove(model.Id);
+            await _equipType.Remove(model.Id);
             return RedirectToAction(nameof(Index));
         }
     }
