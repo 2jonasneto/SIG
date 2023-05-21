@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Maintenance\Models\**" />
+    <Content Remove="Areas\Maintenance\Models\**" />
+    <EmbeddedResource Remove="Areas\Maintenance\Models\**" />
+    <None Remove="Areas\Maintenance\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="automapper.extensions.microsoft.dependencyinjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
@@ -20,10 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\SIG.Data\SIG.Data.csproj" />
     <ProjectReference Include="..\SIG.Services\SIG.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Maintenance\Models\" />
   </ItemGroup>
 
 </Project>

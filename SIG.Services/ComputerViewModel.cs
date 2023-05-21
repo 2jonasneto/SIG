@@ -42,5 +42,6 @@ namespace SIG.Services
         [Display(Name = "Setor")]
         public Guid SectorId { get;  set; }
 
+        public ICollection<HistoricViewModel> Historics { get; set; }
     }
 }

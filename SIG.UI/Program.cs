@@ -33,6 +33,7 @@ namespace SIG.UI
             builder.Services.AddScoped<IActingAreaRepository, ActingAreaRepository>();
             builder.Services.AddScoped<ISectorRepository, SectorRepository>();
             builder.Services.AddScoped<IEquipTypeRepository, EquipTypeRepository>();
+            builder.Services.AddScoped<IHistoricRepository, HistoricRepository>();
             builder.Services.AddMvc();
           
             var app = builder.Build();

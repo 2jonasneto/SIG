@@ -16,6 +16,11 @@ namespace SIG.Data.Respositories
         public ComputerRepository(SigDBContext db) : base(db)
         {
         }
-        
+
+        public async Task<Computer> GetAllIncludeHistoric(Guid id)
+        {
+            return await Db.Computers.Include(x => x.Historics).AsNoTracking().FirstOrDefaultAsync(x => x.Id==id) ;
+           
+        }
     }
 }

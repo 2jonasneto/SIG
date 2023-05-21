@@ -5,33 +5,31 @@
 
 @model IEnumerable<SIG.Services.ComputerViewModel>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Cadastro de Computadores";
 
   
 }
 
 <h2>Cadastro de Computadores</h2>
 <hr />
-@await Html.PartialAsync("_search",new ComputerViewModel())
 
-<hr />
-<table class="table">
+<table class="table table-bordered">
     <tr>
-        <th> <a asp-area="Maintenance" asp-controller="Computers" asp-action="Create" class="btn btn-success"><i class="fa-solid fa-plus"></i>Adicionar</a></th>
-
-        <th class="justify-content-end d-flex">
-            <form class="d-flex" asp-controller="Computers" asp-action="Index">
-
-                @* <input type="text" name="SearchString" class="form-control" style="max-width:400px;" />*@
-
-                <button type="submit" value="" class="form-control" style="background-color: #0082ca;width:50px;margin-left:5px"><i class="fa-solid fa-search"></i></button></>
-
-            </form>
+        <th class ="col-md-2"> <a asp-area="Maintenance" asp-controller="Computers" asp-action="Create" class="btn btn-success w-100"><i class="fa-solid fa-plus"></i>Adicionar</a></th>
+       
+        <th class="col-md-10 ">
+            <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-search"></i>  Busca Avançada
+            </a>
         </th>
+       
     </tr>
 
 
 </table>
+
+@await Html.PartialAsync("_search",new ComputerViewModel())
+<br />
 <div id="TESTE">
   
 @await Html.PartialAsync("_Grid",Model)

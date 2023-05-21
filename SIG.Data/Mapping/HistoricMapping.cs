@@ -10,12 +10,13 @@ using SIG.Core.Domain;
 
 namespace SIG.Data.Mapping
 {
-    public class ComputerMapping: IEntityTypeConfiguration<Computer>
+    public class HistoricMapping: IEntityTypeConfiguration<Historic>
     {
-        public void Configure(EntityTypeBuilder<Computer> builder)
+        public void Configure(EntityTypeBuilder<Historic> builder)
         {
             builder.HasKey(c => c.Id);
-            builder.HasMany(f => f.Historics).WithOne(b => b.Computer).HasForeignKey(b => b.ComputerId).OnDelete(DeleteBehavior.Restrict);
+
+         
         }
     }
 }

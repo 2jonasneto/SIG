@@ -1,0 +1,31 @@
+﻿@model SIG.Services.HistoricViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = null;
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-area="Maintenance" asp-controller="Historics" asp-action="Delete">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+           <br />
+            <div class="form-group d-flex">
+                <input type="submit" value="Excluir" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary" style="margin-left:5px;">Cancelar</a>
+            </div>
+           
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

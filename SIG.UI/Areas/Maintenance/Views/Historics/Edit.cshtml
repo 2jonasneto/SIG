@@ -1,0 +1,41 @@
+﻿@model SIG.Services.HistoricViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+   
+}
+<h2>Editar ocorrências (@Model.Description)</h2>
+<hr />
+<div class="row">
+    <div class="col">
+
+        <form asp-area="Maintenance" asp-controller="Historics" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="ComputerId" class="control-label"></label>
+                <select asp-for="ComputerId" asp-items="ViewBag.ComputerId" class="form-select"></select>
+                <span asp-validation-for="ComputerId" class="text-danger"></span>
+            </div>
+           
+            
+           
+             <br />
+             <hr />
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

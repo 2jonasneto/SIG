@@ -25,38 +25,41 @@
                     <ul  class="navbar-nav flex-grow-1">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               Cadastros
+                                <i class="fa-solid fa-book-medical"></i><span style="color:transparent">*</span>  Cadastros
                             </a>
                             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
                                
                                 <a class="dropdown-item" asp-area="Maintenance" asp-controller="Brands" asp-action="Index">
-                                    <i class="fa-solid fa-industry"></i> Fabricantes
+                                    <i class="fa-solid fa-industry"></i><span style="color:transparent">**</span>  Fabricantes
                                 </a>
                                 <a class="dropdown-item" asp-area="Maintenance" asp-controller="EquipTypes" asp-action="Index">
-                                    <i class="fa-solid fa-industry-windows"></i>Tipos de Equipamento
+                                    <i class="fa-solid fa-server"></i><span style="color:transparent">**</span>   Tipos de Equipamento
                                 </a>
                                 <a class="dropdown-item" asp-area="Maintenance" asp-controller="ActingAreas" asp-action="Index">
-                                    <i class="fa-solid fa-industry-windows"></i>Áreas</a>
+                                    <i class="fa-solid fa-globe"></i><span style="color:transparent">**</span>   Áreas
+                                </a>
                                 <a class="dropdown-item" asp-area="Maintenance" asp-controller="Locacities" asp-action="Index">
-                                    <i class="fa-solid fa-industry-windows"></i> Unidades</a>
+                                    <i class="fa-solid fa-building"></i><span style="color:transparent">**</span>   Unidades
+                                </a>
                                 <a class="dropdown-item" asp-area="Maintenance" asp-controller="Sectors" asp-action="Index">
-                                    <i class="fa-solid fa-industry-windows"></i>Setores
+                                    <i class="fa-solid fa-vector-square"></i><span style="color:transparent">**</span>   Setores
                                 </a>
                             </div>
                         </li>
                        
-                        <li class="nav-item">
-                            <a class="nav-link text-white-50" asp-area="Maintenance" asp-controller="Computers" asp-action="Index">Computadores</a>
-                        </li>
+                 
                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown link
+                                <i class="fa-solid fa-computer"></i><span style="color:transparent">*</span>   Computadores
                             </a>
                             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="Computers" asp-action="Index">
+                                    <i class="fa-solid fa-server"></i><span style="color:transparent">*</span> Cadastro
+                                </a>
+                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="Historics" asp-action="Index">
+                                    <i class="fa-solid fa-clock-rotate-left"></i><span style="color:transparent">*</span> Ocorrências
+                                </a>
                             </div>
                         </li>
                     </ul>
@@ -72,7 +75,7 @@
 
 
   
-    <div class="container" >
+    <div class="container-fluid" >
   
         <main role="main" class="p-3">
             @RenderBody()
@@ -80,7 +83,7 @@
     </div>
     
     <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="form-modal">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"></h5>

@@ -26,10 +26,11 @@ namespace SIG.UI.Areas.Maintenance
         private readonly IBrandRepository _brand;
         private readonly ISectorRepository _sector;
         private readonly IActingAreaRepository _actingArea;
+        private readonly IHistoricRepository _historic;
 
-        public ComputersController(IComputerRepository computer, IMapper mapper, 
+        public ComputersController(IComputerRepository computer, IMapper mapper,
             IEquipTypeRepository equipType, ILocacityRepository locacity,
-            IBrandRepository brand, ISectorRepository sector, IActingAreaRepository actingArea)
+            IBrandRepository brand, ISectorRepository sector, IActingAreaRepository actingArea, IHistoricRepository historic)
         {
 
             _computer = computer;
@@ -39,11 +40,12 @@ namespace SIG.UI.Areas.Maintenance
             _brand = brand;
             _sector = sector;
             _actingArea = actingArea;
+            _historic = historic;
         }
         //    [Route("Computers")]
         // GET: Maintenance/Computers
         [Route("/Maintenance/Computers/")]
-        public async Task<IActionResult> Index(string SearchString,Guid LocacityId)
+        public async Task<IActionResult> Index(string SearchString,Guid LocacityId, Guid TypeId)
         {
             var types = await _equipType.GetAll();
             var brands = await _brand.GetAll();
@@ -59,10 +61,7 @@ namespace SIG.UI.Areas.Maintenance
             var cp = await _computer.GetByQueryReturnIEnumerable(x => x.Name.Contains(SearchString??""));
 
             var cpm = _mapper.Map<IEnumerable<ComputerViewModel>>(cp);
-            foreach (var item in cpm)
-            {
-                
-            }
+           
             return View(cpm);
 
         }
@@ -154,11 +153,15 @@ namespace SIG.UI.Areas.Maintenance
         }
 
         // POST: Maintenance/Computers/Delete/5
-       
 
-        private bool ComputerExists(Guid id)
+
+        [HttpGet]
+        public async Task<IActionResult> Historics(Guid id)
         {
-            return false;
+            var pc =await _computer.GetAllIncludeHistoric(id);
+           
+            return View(_mapper.Map<IEnumerable<HistoricViewModel>>(pc.Historics));
         }
+
     }
 }
