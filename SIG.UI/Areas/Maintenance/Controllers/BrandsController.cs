@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SIG.Core.Domain;
 using SIG.Core.Domain.Interfaces;
 using SIG.Services;
+using SIG.UI.Base;
 
 namespace SIG.UI.Areas.Maintenance
 {
@@ -30,11 +32,12 @@ namespace SIG.UI.Areas.Maintenance
         [Route("/Maintenance/brands")]
         public async Task<IActionResult> Index(string searchString)
         {
+            
             var str = searchString.IsNullOrEmpty() ? "" : searchString;
             var br = await _brand.GetByQueryReturnIEnumerable(x=>x.Name.Contains(str));
             var brm = _mapper.Map<IEnumerable<BrandViewModel>>(br);
-
-            return View(brm);
+        
+                return View(brm);
         }
         public async Task<IActionResult> Details(Guid id)
         {

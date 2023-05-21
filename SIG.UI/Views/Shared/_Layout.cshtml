@@ -72,7 +72,7 @@
 
 
   
-    <div class="container-fluid" >
+    <div class="container" >
   
         <main role="main" class="p-3">
             @RenderBody()
@@ -105,6 +105,7 @@
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

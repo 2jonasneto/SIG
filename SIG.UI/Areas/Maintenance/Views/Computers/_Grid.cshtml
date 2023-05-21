@@ -1,0 +1,110 @@
+﻿@using AutoMapper;
+@using SIG.Core.Domain.Interfaces;
+@model IEnumerable<SIG.Services.ComputerViewModel>
+@inject IMapper _mapper
+@inject IEquipTypeRepository _equipType
+@inject ILocacityRepository _locacity
+@inject IBrandRepository _brand
+@inject ISectorRepository _sector
+@inject IActingAreaRepository _actingArea
+@{
+   
+
+    var types = await _equipType.GetAll();
+    var brands = await _brand.GetAll();
+    var locacities = await _locacity.GetAll();
+    var areas = await _actingArea.GetAll();
+    var sectors = await _sector.GetAll();
+}
+@{
+}
+<table class="table table-striped table-bordered" style="border-color:#c1c1c1;">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.MemoryType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiskType)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocacityId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.AreaId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.SectorId)
+            </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.ModifyDate)
+            </th>
+
+            <th style="width: 150px;text-align:center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemoryType)   @Html.DisplayFor(modelItem => item.MemorySize) GB
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiskType)    @Html.DisplayFor(modelItem => item.DiskSize) GB
+                </td>
+
+
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    @locacities.FirstOrDefault(x=>x.Id==item.LocacityId).Name
+                </td>
+
+                <td>
+                    @areas.FirstOrDefault(x=>x.Id==item.AreaId).Name
+                </td>
+
+                <td>
+                    @sectors.FirstOrDefault(x=>x.Id==item.SectorId).Name
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifyDate)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a onclick="showInPopup('/maintenance/computers/delete/@item.Id','Deseja excluir Computador (@item.Name)?')" class="btn btn-danger"><i class="fa-solid fa-trash-can text-dark"></i></a>
+                    <a onclick="showInPopup('/maintenance/computers/details/@item.Id','Informações do computador (@item.Name - @item.SerialNumber)')" class="btn btn-info"><i class="fa-solid fa-circle-info text-dark"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

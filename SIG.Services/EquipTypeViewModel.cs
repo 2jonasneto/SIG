@@ -8,6 +8,6 @@ namespace SIG.Services
 {
     public  class EquipTypeViewModel:Model
     {
-        public string Name { get; private set; }
+        public string Name { get; set; }
     }
 }

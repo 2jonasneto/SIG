@@ -46,7 +46,6 @@ namespace SIG.UI.Areas.Maintenance
             return View(_mapper.Map<LocacityViewModel>(await _locacity.GetById(id)));
         }
         [HttpGet]
-        [Route("/Maintenance/Locacities/Create")]
         public async Task<IActionResult> Create()
         {
             var areas = await _actingArea.GetAll();

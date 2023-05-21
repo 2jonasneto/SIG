@@ -38,3 +38,16 @@ jQueryAjaxPost = form => {
         console.log(ex)
     }
 }
+$("input").keyup(function () {
+    $(this).val($(this).val().toUpperCase());
+
+})
+$(document).ready(function () {
+    try {
+        $("input[type='text']").each(function () {
+            $(this).attr("autocomplete", "off");
+            $(this).val($(this).val().toUpperCase());
+        });
+    }
+    catch (e) { }
+});

@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using SIG.Core.Domain;
 using SIG.Core.Domain.Interfaces;
 using SIG.Data.Base;
@@ -20,53 +21,86 @@ namespace SIG.UI.Areas.Maintenance
 
         private readonly IComputerRepository _computer;
         private readonly IMapper _mapper;
+        private readonly IEquipTypeRepository _equipType;
+        private readonly ILocacityRepository _locacity;
+        private readonly IBrandRepository _brand;
+        private readonly ISectorRepository _sector;
+        private readonly IActingAreaRepository _actingArea;
 
-        public ComputersController(IComputerRepository computer, IMapper mapper)
+        public ComputersController(IComputerRepository computer, IMapper mapper, 
+            IEquipTypeRepository equipType, ILocacityRepository locacity,
+            IBrandRepository brand, ISectorRepository sector, IActingAreaRepository actingArea)
         {
 
             _computer = computer;
             _mapper = mapper;
+            _equipType = equipType;
+            _locacity = locacity;
+            _brand = brand;
+            _sector = sector;
+            _actingArea = actingArea;
         }
         //    [Route("Computers")]
         // GET: Maintenance/Computers
-        public async Task<IActionResult> Index()
+        [Route("/Maintenance/Computers/")]
+        public async Task<IActionResult> Index(string SearchString,Guid LocacityId)
         {
+            var types = await _equipType.GetAll();
+            var brands = await _brand.GetAll();
+            var locacities = await _locacity.GetAll();
+            var areas = await _actingArea.GetAll();
+            var sectors = await _sector.GetAll();
+            ViewBag.AreaId = new SelectList(_mapper.Map<IEnumerable<ActingAreaViewModel>>(areas), "Id", "Name");
+            ViewBag.BrandId = new SelectList(_mapper.Map<IEnumerable<BrandViewModel>>(brands), "Id", "Name");
+            ViewBag.SectorId = new SelectList(_mapper.Map<IEnumerable<SectorViewModel>>(sectors), "Id", "Name");
+            ViewBag.LocacityId = new SelectList(_mapper.Map<IEnumerable<LocacityViewModel>>(locacities), "Id", "Name");
+            ViewBag.TypeId = new SelectList(_mapper.Map<IEnumerable<EquipTypeViewModel>>(types), "Id", "Name");
 
-            var cp = await _computer.GetAll();
+            var cp = await _computer.GetByQueryReturnIEnumerable(x => x.Name.Contains(SearchString??""));
+
             var cpm = _mapper.Map<IEnumerable<ComputerViewModel>>(cp);
-
+            foreach (var item in cpm)
+            {
+                
+            }
             return View(cpm);
 
         }
 
-        // GET: Maintenance/Computers/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+     
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
         {
+
+
+            var computer = _mapper.Map<ComputerViewModel>(await _computer.GetById(id));
+               
+            if (computer == null)
+            {
+                return NotFound();
+            }
+
+            return View(computer);
+        }
+     
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            var types = await _equipType.GetAll();
+            var brands = await _brand.GetAll();
+            var locacities = await _locacity.GetAll();
+            var areas = await _actingArea.GetAll();
+            var sectors = await _sector.GetAll();
+            ViewBag.AreaId = new SelectList(_mapper.Map<IEnumerable<ActingAreaViewModel>>(areas), "Id", "Name");
+            ViewBag.BrandId = new SelectList(_mapper.Map<IEnumerable<BrandViewModel>>(brands), "Id", "Name");
+            ViewBag.SectorId = new SelectList(_mapper.Map<IEnumerable<SectorViewModel>>(sectors), "Id", "Name");
+            ViewBag.LocacityId = new SelectList(_mapper.Map<IEnumerable<LocacityViewModel>>(locacities), "Id", "Name");
+            ViewBag.TypeId = new SelectList(_mapper.Map<IEnumerable<EquipTypeViewModel>>(types), "Id", "Name");
+
             return View();
-            /* if (id == null || _context.Computers == null)
-             {
-                 return NotFound();
-             }
-
-             var computer = await _context.Computers
-                 .FirstOrDefaultAsync(m => m.Id == id);
-             if (computer == null)
-             {
-                 return NotFound();
-             }
-
-             return View(computer);*/
-        }
-        // [Route("Computers/Create")]
-        // GET: Maintenance/Computers/Create
-        public IActionResult Create()
-        {
-            return View(new ComputerViewModel());
         }
 
-        // POST: Maintenance/Computers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ComputerViewModel model)
@@ -78,41 +112,49 @@ namespace SIG.UI.Areas.Maintenance
             
            
         }
-
+        [HttpGet]
         // GET: Maintenance/Computers/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-           
-            return View();
+            var types = await _equipType.GetAll();
+            var brands = await _brand.GetAll();
+            var locacities = await _locacity.GetAll();
+            var areas = await _actingArea.GetAll();
+            var sectors = await _sector.GetAll();
+            ViewBag.AreaId = new SelectList(_mapper.Map<IEnumerable<ActingAreaViewModel>>(areas), "Id", "Name");
+            ViewBag.BrandId = new SelectList(_mapper.Map<IEnumerable<BrandViewModel>>(brands), "Id", "Name");
+            ViewBag.SectorId = new SelectList(_mapper.Map<IEnumerable<SectorViewModel>>(sectors), "Id", "Name");
+            ViewBag.LocacityId = new SelectList(_mapper.Map<IEnumerable<LocacityViewModel>>(locacities), "Id", "Name");
+            ViewBag.TypeId = new SelectList(_mapper.Map<IEnumerable<EquipTypeViewModel>>(types), "Id", "Name");
+            return View(_mapper.Map<ComputerViewModel>(await _computer.GetById(id)));
         }
 
-        // POST: Maintenance/Computers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Name,Description,Processor,MemoryType,DiskType,DiskSize,MemorySize,BrandId,BrandName,TypeId,TypeName,SerialNumber,LocacityId,LocacityName,AreaId,AreaName,SectorId,SectorName,Id,ModifiedBy,ModifyDate,IsActive")] Computer computer)
+        public async Task<IActionResult> Edit(ComputerViewModel model)
         {
-           
-            return View(computer);
+            if (!ModelState.IsValid) return View();
+
+            await _computer.Update(_mapper.Map<Computer>(model));
+            return RedirectToAction(nameof(Index));
         }
-
-        // GET: Maintenance/Computers/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
         {
-          
 
-            return View();
+            return View(_mapper.Map<ComputerViewModel>(await _computer.GetById(id)));
+        }
+        // GET: Maintenance/Computers/Delete/5
+        [HttpPost]
+        public async Task<IActionResult> Delete(ComputerViewModel model)
+        {
+            await _computer.Remove(model.Id);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Maintenance/Computers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
-        {
-            
-            return RedirectToAction(nameof(Index));
-        }
+       
 
         private bool ComputerExists(Guid id)
         {

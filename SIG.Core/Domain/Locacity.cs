@@ -20,6 +20,5 @@ namespace SIG.Core.Domain
         public Guid ActingAreaId { get; private set; }
         public  ActingArea ActingArea { get;  set; }
 
-        public ICollection<Computer> Computers { get; set; }
     }
 }

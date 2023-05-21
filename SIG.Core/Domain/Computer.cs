@@ -76,7 +76,6 @@ namespace SIG.Core.Domain
         public Guid BrandId { get; private set; }
         public Guid TypeId { get; private set; }
 
-      
-        public Locacity Locacity { get; set; }
+    
     }
 }

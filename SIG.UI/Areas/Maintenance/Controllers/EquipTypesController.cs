@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using SIG.Core.Domain;
 using SIG.Core.Domain.Interfaces;
 using SIG.Services;
+using SIG.UI.Base;
 
 namespace SIG.UI.Areas.Maintenance
 {
@@ -41,6 +42,7 @@ namespace SIG.UI.Areas.Maintenance
 
             return View(_mapper.Map<EquipTypeViewModel>(await _equipType.GetById(id)));
         }
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             
@@ -55,7 +57,7 @@ namespace SIG.UI.Areas.Maintenance
             return RedirectToAction(nameof(Index));
         }
 
-       
+        [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
 
@@ -69,6 +71,7 @@ namespace SIG.UI.Areas.Maintenance
             await _equipType.Update(_mapper.Map<EquipType>(model));
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
 
