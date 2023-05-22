@@ -16,7 +16,7 @@ namespace SIG.UI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("Conn2") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<SigDBContext>(options =>
                 options.UseSqlServer(connectionString));
             // builder.Services.AddDbContext<SigDBContext>();
