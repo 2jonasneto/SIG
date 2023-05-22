@@ -38,14 +38,23 @@ jQueryAjaxPost = form => {
         console.log(ex)
     }
 }
+
 $("input").keyup(function () {
+    if (window.location.pathname.includes('Register')) {
+        return;
+    }
+       
     $(this).val($(this).val().toUpperCase());
 
 })
 $(document).ready(function () {
     try {
+
         $("input[type='text']").each(function () {
             $(this).attr("autocomplete", "off");
+            if (window.location.pathname.includes('Register')) {
+                return;
+            }
             $(this).val($(this).val().toUpperCase());
         });
     }

@@ -134,6 +134,7 @@ namespace SIG.UI.Areas.Maintenance
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ComputerViewModel model)
         {
+            ModelState.Remove("Historics");
             if (!ModelState.IsValid) return View();
 
             await _computer.Update(_mapper.Map<Computer>(model));

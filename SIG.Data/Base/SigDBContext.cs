@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SIG.Core.Domain;
 
 namespace SIG.Data.Base
 {
-    public class SigDBContext : DbContext
+    public class SigDBContext : IdentityDbContext
     {
 
         public SigDBContext(DbContextOptions<SigDBContext> contextOptions) : base(contextOptions)

@@ -23,7 +23,7 @@ namespace SIG.UI
          
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<SigDBContext>()
                 .AddEntityFrameworkStores<SigDBContext>();
             builder.Services.AddAutoMapper(typeof(Program));
 
@@ -60,6 +60,10 @@ namespace SIG.UI
                name: "areas",
                areaName:"Maintenance",
                pattern: "Maintenance/{controller=Home}/{action=Index}/{id?}");
+            app.MapAreaControllerRoute(
+             name: "areas",
+             areaName: "Identity",
+             pattern: "Identity/{controller=Home}/{action=Index}/{id?}");
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
