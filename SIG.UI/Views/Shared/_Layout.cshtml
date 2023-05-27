@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,45 +26,48 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul  class="navbar-nav flex-grow-1">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa-solid fa-book-medical"></i><span style="color:transparent">*</span>  Cadastros
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
-                               
-                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="Brands" asp-action="Index">
-                                    <i class="fa-solid fa-industry"></i><span style="color:transparent">**</span>  Fabricantes
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-solid fa-book-medical"></i><span style="color:transparent">*</span>  Cadastros
                                 </a>
-                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="EquipTypes" asp-action="Index">
-                                    <i class="fa-solid fa-server"></i><span style="color:transparent">**</span>   Tipos de Equipamento
+                                <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+
+                                    <a class="dropdown-item" asp-area="Maintenance" asp-controller="Brands" asp-action="Index">
+                                        <i class="fa-solid fa-industry"></i><span style="color:transparent">**</span>  Fabricantes
+                                    </a>
+                                    <a class="dropdown-item" asp-area="Maintenance" asp-controller="EquipTypes" asp-action="Index">
+                                        <i class="fa-solid fa-server"></i><span style="color:transparent">**</span>   Tipos de Equipamento
+                                    </a>
+                                    <a class="dropdown-item" asp-area="Maintenance" asp-controller="ActingAreas" asp-action="Index">
+                                        <i class="fa-solid fa-globe"></i><span style="color:transparent">**</span>   Áreas
+                                    </a>
+                                    <a class="dropdown-item" asp-area="Maintenance" asp-controller="Locacities" asp-action="Index">
+                                        <i class="fa-solid fa-building"></i><span style="color:transparent">**</span>   Unidades
+                                    </a>
+                                    <a class="dropdown-item" asp-area="Maintenance" asp-controller="Sectors" asp-action="Index">
+                                        <i class="fa-solid fa-vector-square"></i><span style="color:transparent">**</span>   Setores
+                                    </a>
+                                </div>
+                            </li>
+
+
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-solid fa-computer"></i><span style="color:transparent">*</span>   Computadores
                                 </a>
-                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="ActingAreas" asp-action="Index">
-                                    <i class="fa-solid fa-globe"></i><span style="color:transparent">**</span>   Áreas
-                                </a>
-                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="Locacities" asp-action="Index">
-                                    <i class="fa-solid fa-building"></i><span style="color:transparent">**</span>   Unidades
-                                </a>
-                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="Sectors" asp-action="Index">
-                                    <i class="fa-solid fa-vector-square"></i><span style="color:transparent">**</span>   Setores
-                                </a>
-                            </div>
-                        </li>
-                       
-                 
-                       
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa-solid fa-computer"></i><span style="color:transparent">*</span>   Computadores
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="Computers" asp-action="Index">
-                                    <i class="fa-solid fa-server"></i><span style="color:transparent">*</span> Cadastro
-                                </a>
-                                <a class="dropdown-item" asp-area="Maintenance" asp-controller="Historics" asp-action="Index">
-                                    <i class="fa-solid fa-clock-rotate-left"></i><span style="color:transparent">*</span> Ocorrências
-                                </a>
-                            </div>
-                        </li>
+                                <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-area="Maintenance" asp-controller="Computers" asp-action="Index">
+                                        <i class="fa-solid fa-server"></i><span style="color:transparent">*</span> Cadastro
+                                    </a>
+                                    <a class="dropdown-item" asp-area="Maintenance" asp-controller="Historics" asp-action="Index">
+                                        <i class="fa-solid fa-clock-rotate-left"></i><span style="color:transparent">*</span> Ocorrências
+                                    </a>
+                                </div>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

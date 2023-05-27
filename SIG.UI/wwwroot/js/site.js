@@ -43,7 +43,9 @@ $("input").keyup(function () {
     if (window.location.pathname.includes('Register')) {
         return;
     }
-       
+    if (window.location.pathname.includes('Login')) {
+        return;
+    }
     $(this).val($(this).val().toUpperCase());
 
 })
@@ -53,6 +55,9 @@ $(document).ready(function () {
         $("input[type='text']").each(function () {
             $(this).attr("autocomplete", "off");
             if (window.location.pathname.includes('Register')) {
+                return;
+            }
+            if (window.location.pathname.includes('Login')) {
                 return;
             }
             $(this).val($(this).val().toUpperCase());

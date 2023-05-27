@@ -45,6 +45,14 @@ namespace SIG.UI.Areas.Identity.Controllers
             }
           return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("index", "home");
+        }
+
         [HttpGet]
         public IActionResult Login()
         {
