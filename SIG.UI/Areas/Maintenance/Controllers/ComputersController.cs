@@ -47,7 +47,7 @@ namespace SIG.UI.Areas.Maintenance
         //    [Route("Computers")]
         // GET: Maintenance/Computers
         [Route("/Maintenance/Computers/")]
-        public async Task<IActionResult> Index(string SearchString,Guid LocacityId, Guid TypeId)
+        public async Task<IActionResult> Index(Guid LocacityId,string SearchString, Guid TypeId)
         {
             var types = await _equipType.GetAll();
             var brands = await _brand.GetAll();
@@ -60,7 +60,8 @@ namespace SIG.UI.Areas.Maintenance
             ViewBag.LocacityId = new SelectList(_mapper.Map<IEnumerable<LocacityViewModel>>(locacities), "Id", "Name");
             ViewBag.TypeId = new SelectList(_mapper.Map<IEnumerable<EquipTypeViewModel>>(types), "Id", "Name");
 
-            var cp = await _computer.GetByQueryReturnIEnumerable(x => x.Name.Contains(SearchString??""));
+           
+            var cp = await _computer.GetByQueryReturnIEnumerable(x => x.Name.Contains((SearchString ?? "").Trim()));
 
             var cpm = _mapper.Map<IEnumerable<ComputerViewModel>>(cp);
            

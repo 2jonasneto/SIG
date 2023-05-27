@@ -31,7 +31,8 @@ namespace SIG.Data.Base
 
         public virtual async Task<IEnumerable<TEntity>> GetByQueryReturnIEnumerable(Expression<Func<TEntity, bool>> expression)
         {
-            return await DbSet.AsNoTracking().Where(expression).ToListAsync();
+            var t = DbSet.Where(expression).AsNoTracking();
+            return await t.ToListAsync();
         }
 
        
